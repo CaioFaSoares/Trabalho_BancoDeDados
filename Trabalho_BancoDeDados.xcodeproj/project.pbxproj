@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FB9D978FF8CC2D88B384B0C /* Pods_Trabalho_BancoDeDados.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C72111503543B7B278CC47 /* Pods_Trabalho_BancoDeDados.framework */; };
 		D60FE1B92A3A9D7C00908308 /* Trabalho_BancoDeDadosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FE1B82A3A9D7C00908308 /* Trabalho_BancoDeDadosApp.swift */; };
 		D60FE1BB2A3A9D7C00908308 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FE1BA2A3A9D7C00908308 /* ContentView.swift */; };
 		D60FE1BD2A3A9D7E00908308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60FE1BC2A3A9D7E00908308 /* Assets.xcassets */; };
@@ -14,11 +15,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14C72111503543B7B278CC47 /* Pods_Trabalho_BancoDeDados.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trabalho_BancoDeDados.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		568333E7595AD8B9B53DBF3B /* Pods-Trabalho_BancoDeDados.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trabalho_BancoDeDados.debug.xcconfig"; path = "Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados.debug.xcconfig"; sourceTree = "<group>"; };
+		75FAA538483056A9232BC568 /* Pods-Trabalho_BancoDeDados.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trabalho_BancoDeDados.release.xcconfig"; path = "Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados.release.xcconfig"; sourceTree = "<group>"; };
 		D60FE1B52A3A9D7C00908308 /* Trabalho_BancoDeDados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trabalho_BancoDeDados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60FE1B82A3A9D7C00908308 /* Trabalho_BancoDeDadosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trabalho_BancoDeDadosApp.swift; sourceTree = "<group>"; };
 		D60FE1BA2A3A9D7C00908308 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D60FE1BC2A3A9D7E00908308 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D60FE1BF2A3A9D7E00908308 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D6E5CABE2A3F9A5C00948443 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +31,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB9D978FF8CC2D88B384B0C /* Pods_Trabalho_BancoDeDados.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E893CDC3B7A2FD71819CD36 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				568333E7595AD8B9B53DBF3B /* Pods-Trabalho_BancoDeDados.debug.xcconfig */,
+				75FAA538483056A9232BC568 /* Pods-Trabalho_BancoDeDados.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D60FE1AC2A3A9D7C00908308 = {
 			isa = PBXGroup;
 			children = (
 				D60FE1B72A3A9D7C00908308 /* Trabalho_BancoDeDados */,
 				D60FE1B62A3A9D7C00908308 /* Products */,
+				D6E5CABA2A3F99F400948443 /* Frameworks */,
+				5E893CDC3B7A2FD71819CD36 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +85,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D6E5CABA2A3F99F400948443 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6E5CABE2A3F9A5C00948443 /* libc++.tbd */,
+				14C72111503543B7B278CC47 /* Pods_Trabalho_BancoDeDados.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D60FE1C32A3A9D7E00908308 /* Build configuration list for PBXNativeTarget "Trabalho_BancoDeDados" */;
 			buildPhases = (
+				83BFB895F8278214B2D73A33 /* [CP] Check Pods Manifest.lock */,
 				D60FE1B12A3A9D7C00908308 /* Sources */,
 				D60FE1B22A3A9D7C00908308 /* Frameworks */,
 				D60FE1B32A3A9D7C00908308 /* Resources */,
+				3497883D30CD1D584C35A157 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +160,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3497883D30CD1D584C35A157 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83BFB895F8278214B2D73A33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Trabalho_BancoDeDados-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D60FE1B12A3A9D7C00908308 /* Sources */ = {
@@ -261,6 +332,7 @@
 		};
 		D60FE1C42A3A9D7E00908308 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 568333E7595AD8B9B53DBF3B /* Pods-Trabalho_BancoDeDados.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -290,6 +362,7 @@
 		};
 		D60FE1C52A3A9D7E00908308 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75FAA538483056A9232BC568 /* Pods-Trabalho_BancoDeDados.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

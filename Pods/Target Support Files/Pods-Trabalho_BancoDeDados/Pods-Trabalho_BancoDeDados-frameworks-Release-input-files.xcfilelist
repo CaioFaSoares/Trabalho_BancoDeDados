@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-Trabalho_BancoDeDados/Pods-Trabalho_BancoDeDados-frameworks.sh
+${BUILT_PRODUCTS_DIR}/OHMySQL/OHMySQL.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/OHMySQL/MySQL.framework/MySQL

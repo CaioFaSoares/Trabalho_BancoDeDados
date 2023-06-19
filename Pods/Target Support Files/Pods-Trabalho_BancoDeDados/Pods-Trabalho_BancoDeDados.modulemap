@@ -1,0 +1,6 @@
+framework module Pods_Trabalho_BancoDeDados {
+  umbrella header "Pods-Trabalho_BancoDeDados-umbrella.h"
+
+  export *
+  module * { export * }
+}
