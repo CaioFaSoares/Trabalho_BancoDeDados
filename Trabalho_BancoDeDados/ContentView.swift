@@ -34,167 +34,70 @@ struct ContentView: View {
                     Image(systemName: "person.circle.fill")
                     Text("Cadastrar Conta")
                 }
+            } else {
+                VStack {
+                    Text("Bem vindo a Lavanderia do Ilustre Sr. Sapo Folha \(viewModel.db.defaults.string(forKey: "user") ?? "")").padding(.all).multilineTextAlignment(.center)
+                    Spacer()
+                    Form {
+                        ForEach(viewModel.possibleMachines.filter { $0.maquina_disponibilidade == 1 }, id: \.self) { machine in
+                            Button("Schedule cleaning for \(machine.maquina_numero)") {
+                                viewModel.updateMachine(machine.maquina_numero, false)
+                                viewModel.createScheduling(machine.maquina_numero, viewModel.db.defaults.string(forKey: "cpf")!)
+                            }
+                        }
+                    }
+                    Spacer()
+                }.tabItem {
+                    Image(systemName: "clock.circle")
+                    Text("Agendar")
+                }.onAppear {
+                    viewModel.possibleMachines = viewModel.db.fetchMachine()
+                }.onChange(of: viewModel.possibleMachines) { _ in
+                    self.refreshable { }
+                }
+
+                VStack {
+                    Text("Bem vindo a Lavanderia do Ilustre Sr. Sapo Folha \(viewModel.db.defaults.string(forKey: "user") ?? "")").padding(.all).multilineTextAlignment(.center)
+                    Spacer()
+                    Form {
+                        ForEach(viewModel.upcomingCleanings, id: \.self) { cleaning in
+                            Button("Mark cleaning \(cleaning.idagendamento) as done") {
+                                viewModel.updateMachine(Int(exactly: cleaning.maquina_numero)!, true)
+                                viewModel.deleteScheduling(Int(exactly: cleaning.idagendamento)!)
+                            }
+                        }
+                    }
+                }.tabItem {
+                    Image(systemName: "bubbles.and.sparkles.fill")
+                    Text("Consultar fila")
+                }.onAppear {
+                    viewModel.upcomingCleanings = viewModel.db.fetchScheduling()
+                }.onChange(of: viewModel.possibleMachines) { _ in
+                    self.refreshable { }
+                }
+
+                VStack {
+                    Section {
+                        Button("Logout") {
+                            viewModel.db.nukeAccount()
+                        }
+                        Button("Create Machine") {
+                            viewModel.db.createMachine()
+                        }
+                        Button("Fetch Machines") {
+                            viewModel.db.fetchMachine()
+                        }
+                        Button("Perform Inner Join") {
+                            viewModel.db.performInnerJoin()
+                        }
+                    }
+                }.tabItem {
+                    Image(systemName: "person.circle")
+                    Text("Painel")
+                }
             }
-
-            VStack {
-                
-            }.tabItem {
-                Image(systemName: "clock.circle")
-                Text("Agendar")
-            }.onAppear {
-
-            }
-
-            VStack {
-                
-            }.tabItem {
-                Image(systemName: "bubbles.and.sparkles.fill")
-                Text("Consultar fila")
-            }
-            
-            VStack {
-                
-            }.tabItem {
-                Image(systemName: "person.circle")
-                Text("Painel")
-            }
         }
     }
-}
-
-extension ContentView {
-
-    @MainActor class ViewModel: ObservableObject {
-
-        init() {
-            self.db = DatabaseInteractor.shared
-            db.checkIfUserExists(username: db.defaults.string(forKey: "user") ?? "", cpf: db.defaults.string(forKey: "cpf") ?? "", contato: db.defaults.string(forKey: "contato") ?? "")
-        }
-
-        public var db: DatabaseInteractor!
-
-        // MARK: - First tab view stuff
-
-        @Published var username = ""
-        @Published var cpf      = ""
-        @Published var contato  = ""
-
-        @Published var warning  = ""
-
-
-        // MARK: - Second tab view stuff
-
-    }
-}
-
-class DatabaseInteractor {
-
-    let defaults = UserDefaults.standard
-
-    init() {
-        let user = MySQLConfiguration(user: "root",
-                                      password: "admin",
-                                      serverName: "192.168.0.4",
-                                      dbName: "modelo_lavanderia",
-                                      port: 3306,
-                                      socket: nil)
-
-        self.coordinator = MySQLStoreCoordinator(configuration: user)
-        coordinator.encoding = .UTF8MB4
-        coordinator.connect()
-        self.context.storeCoordinator = coordinator
-    }
-
-    static var shared = DatabaseInteractor()
-    let context = MySQLQueryContext()
-    let coordinator: MySQLStoreCoordinator!
-
-}
-
-extension DatabaseInteractor {
-
-    func createAccount(username: String, cpf: String, contato: String, warning: inout String) {
-        if username == "" || cpf == "" || contato == "" { warning = "No field can be empty!"; return }
-        if username.count > 90 { warning = "Username should be under 90 chars!"; return  }
-        if cpf.count > 14 { warning = "CPF should be under 14 chars!"; return  }
-        if contato.count > 14 { warning = "Contato should be under 14 chars!"; return  }
-
-        if checkIfUserExists(username: username, cpf: cpf, contato: contato) {
-            warning = "User already exists!"
-            return
-        }
-
-        let query = MySQLQueryRequestFactory.insert("cliente", set:
-                                                        ["cliente_nome" : username,
-                                                         "cliente_cpf": cpf,
-                                                         "cliente_contato": contato])
-
-        do {
-            try context.execute(query)
-            defaults.setValue(username, forKey: "user")
-            defaults.setValue(cpf, forKey: "cpf")
-            defaults.setValue(contato, forKey: "contato")
-            defaults.setValue(true, forKey: "userExists")
-            print("Created account!")
-        } catch {
-            defaults.setValue(false, forKey: "userExists")
-        }
-
-    }
-
-    func checkIfUserExists(username: String, cpf: String, contato: String) -> Bool {
-
-        guard let currentCPF = defaults.value(forKey: "cpf") else { print("No CPF currently Defaulted") ; return false }
-
-        let query = MySQLQueryRequest(query: "SELECT * FROM cliente WHERE cliente_cpf = \(currentCPF)")
-//            (query: "SELECT * FROM cliente WHERE cliente_cpf = :cpf", condition: currentlyDefaultedUser)
-
-        let response: [[String: Any]]
-
-        do {
-            response = try context.executeQueryRequestAndFetchResult(query)
-        } catch {
-            print("Could not find this CPF in DB")
-            fatalError()
-        }
-
-        let currentlyDefaultUser: [String: Any] = ["cliente_contato": defaults.value(forKey: "contato"),
-                                                   "cliente_nome": defaults.value(forKey: "user"),
-                                                   "cliente_cpf": defaults.value(forKey: "cpf")]
-        print(currentlyDefaultUser)
-        print(response.first)
-
-        if let unwrappedDict = response.first {
-            let areEqual = currentlyDefaultUser.keys.allSatisfy { key in
-                currentlyDefaultUser[key] as? AnyHashable == unwrappedDict[key] as? AnyHashable
-            }
-            if areEqual { print("User is valid!") ; return true }
-        } else {
-            print("dict2 is nil")
-        }
-
-        return true
-
-    }
-
-    func scheduleCleaning(machine: Int, date: Date, preco: Int) {
-        let query = MySQLQueryRequestFactory.insert("agendamento", set:
-                                                        ["idagendamento" : UUID(),
-                                                         "maquina_numero": machine,
-                                                         "cliente_cpf": defaults.string(forKey: "cpf"),
-                                                         "agendamento_data": date,
-                                                         "agendamento_preço": preco])
-    }
-
-//    func fetchAllCleaning() -> [Cleaning] {
-//
-//    }
-
-
-}
-
-struct Cleaning {
-
 }
 
 struct ContentView_Previews: PreviewProvider {

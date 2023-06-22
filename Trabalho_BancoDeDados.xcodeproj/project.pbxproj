@@ -12,6 +12,8 @@
 		D60FE1BB2A3A9D7C00908308 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FE1BA2A3A9D7C00908308 /* ContentView.swift */; };
 		D60FE1BD2A3A9D7E00908308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60FE1BC2A3A9D7E00908308 /* Assets.xcassets */; };
 		D60FE1C02A3A9D7E00908308 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60FE1BF2A3A9D7E00908308 /* Preview Assets.xcassets */; };
+		D680054A2A3FDF8E0012D238 /* DatabaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68005492A3FDF8E0012D238 /* DatabaseInteractor.swift */; };
+		D680054C2A3FE52E0012D238 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D680054B2A3FE52E0012D238 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		D60FE1BA2A3A9D7C00908308 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D60FE1BC2A3A9D7E00908308 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D60FE1BF2A3A9D7E00908308 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D68005492A3FDF8E0012D238 /* DatabaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInteractor.swift; sourceTree = "<group>"; };
+		D680054B2A3FE52E0012D238 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D6E5CABE2A3F9A5C00948443 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -44,7 +48,6 @@
 				568333E7595AD8B9B53DBF3B /* Pods-Trabalho_BancoDeDados.debug.xcconfig */,
 				75FAA538483056A9232BC568 /* Pods-Trabalho_BancoDeDados.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -71,6 +74,8 @@
 			children = (
 				D60FE1B82A3A9D7C00908308 /* Trabalho_BancoDeDadosApp.swift */,
 				D60FE1BA2A3A9D7C00908308 /* ContentView.swift */,
+				D68005492A3FDF8E0012D238 /* DatabaseInteractor.swift */,
+				D680054B2A3FE52E0012D238 /* ViewModel.swift */,
 				D60FE1BC2A3A9D7E00908308 /* Assets.xcassets */,
 				D60FE1BE2A3A9D7E00908308 /* Preview Content */,
 			);
@@ -208,7 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D680054A2A3FDF8E0012D238 /* DatabaseInteractor.swift in Sources */,
 				D60FE1BB2A3A9D7C00908308 /* ContentView.swift in Sources */,
+				D680054C2A3FE52E0012D238 /* ViewModel.swift in Sources */,
 				D60FE1B92A3A9D7C00908308 /* Trabalho_BancoDeDadosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
